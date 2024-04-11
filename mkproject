@@ -21,7 +21,7 @@ fi
 mkdir "$project_name"
 
 # Reference folder containing the folders to copy
-reference_folder="/home/christophe/my_scripts/Template"
+reference_folder="$HOME/my_scripts/Template"
 
 # Check if the reference folder exists
 if [ ! -d "$reference_folder" ]; then
