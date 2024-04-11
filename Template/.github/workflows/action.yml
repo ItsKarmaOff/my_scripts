@@ -3,9 +3,6 @@ name: project_name
 env:
   EXECUTABLE:
     binary_name
-  WEBHOOK_URL:
-    ${{ secrets.DISCORD_WEBHOOK_URL_SECRET }}
-
 
 on:
   [push, pull_request]
@@ -19,14 +16,24 @@ jobs:
         uses: actions/checkout@v4.1.1
       - name: Check coding-style
         run: |
-          docker run --rm --security-opt "label:disable" -i -v "$(pwd)":"/mnt/delivery" -v "$(pwd)":"/mnt/reports" ghcr.io/epitech/coding-style-checker:latest "/mnt/delivery" "/mnt/reports" ;
+          docker run --rm --security-opt "label:disable" -i -v "$(pwd)":"/mnt/delivery" -v "$(pwd)":"/mnt/reports" ghcr.io/epitech/coding-style-checker:latest "/mnt/delivery" "/mnt/reports"
       - name: Display coding-style report
         run: |
-          chmod +x .github/workflows/display_codingstyle.sh
-          .github/workflows/display_codingstyle.sh
-      - name: Notify Discord
+          input="coding-style-reports.log"
+          if [ ! -f "$input" ]; then
+              echo "Error: Input file '$input' not found."
+              curl -X POST -H "Content-Type: application/json" -d '{"content": "Error: Input file '$input' not found."}' $WEBHOOK_URL
+              exit 1
+          fi
+          while IFS=": " read -r file line title description; do
+              echo "::error title=$title coding style error,file=$file,line=$line::$description"
+          done < "$input"
+      - name: Report banana result
         run: |
-          curl -X POST -H "Content-Type: application/json" -d '{"content": "Check coding-style job completed."}' $WEBHOOK_URL
+          NB_ERROR=$(cat /tmp/coding-style-reports.log | wc -l)
+          if [ $NB_ERROR -gt 0 ]; then
+            exit 1
+          fi
 
   check_program_compilation:
       name: Check program compilation
@@ -48,9 +55,6 @@ jobs:
                 exit 1
               fi
             done
-        - name: Notify Discord
-          run: |
-            curl -X POST -H "Content-Type: application/json" -d '{"content": "Check program compilation job completed."}' $WEBHOOK_URL
 
   run_tests:
     name: Run tests
@@ -63,6 +67,3 @@ jobs:
         uses: actions/checkout@v4.1.1
       - name: Run tests
         run: make tests_run
-      - name: Notify Discord
-        run: |
-          curl -X POST -H "Content-Type: application/json" -d '{"content": "Run tests job completed."}' $WEBHOOK_URL
