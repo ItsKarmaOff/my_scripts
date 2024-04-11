@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Check if email address is provided as the first parameter
+if [ $# -ne 2 ]; then
+    echo "Usage: <email> <name>"
+    exit 1
+fi
+
+# Email address
+email=$1
+name=$2
+
+# Check if ~/.ssh directory exists, if not, create it
+ssh_dir="$HOME/.ssh"
+if [ ! -d "$ssh_dir" ]; then
+    mkdir -p "$ssh_dir"
+fi
+
+# Destination path for the key
+key_path="$ssh_dir/${name}"
+
+# Generate SSH key without passphrase
+ssh-keygen -t rsa -b 4096 -C "$email" -N "" -f "$key_path" <<< $'\n\n'
+
+echo "SSH key has been successfully generated at location: $key_path"
+echo "Public key:"
+cat "${key_path}.pub"
+echo "Private key:"
+cat "$key_path"

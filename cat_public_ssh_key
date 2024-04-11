@@ -1,0 +1,16 @@
+#!/bin/bash
+
+ssh_dir="$HOME/.ssh"
+# Check is name is provided as the parameter
+if [ $# -ne 1 ]; then
+    echo "Usage: <name>"
+    exit 1
+fi
+
+name=$1
+
+# Destination path for the key
+key_path="$ssh_dir/${name}"
+
+echo "Public key:"
+cat "$key_path.pub"
