@@ -1,30 +1,30 @@
 #!/bin/bash
 
-# Fonction pour extraire le nom d'utilisateur et le nom du dépôt à partir de l'URL GitHub
+# Function to extract username and repository name from GitHub URL
 extract_github_repo_info() {
     local url="$1"
-    # Supprimer 'https://github.com/' ou 'git@github.com:' et '.git' à la fin de l'URL
+    # Remove 'https://github.com/' or 'git@github.com:' and '.git' at the end of the URL
     local cleaned_url="${url#https://github.com/}"
     cleaned_url="${cleaned_url#git@github.com:}"
     cleaned_url="${cleaned_url%.git}"
-    # Extraire le nom d'utilisateur et le nom du dépôt
+    # Extract username and repository name
     local user_repo=($(echo "$cleaned_url" | tr '/' ' '))
     echo "${user_repo[0]} ${user_repo[1]}"
 }
 
-# Cloner chaque dépôt GitHub répertorié dans le script
+# Clone each GitHub repository listed in the script
 while IFS= read -r repo || [ -n "$repo" ]; do
-    # Extraire le nom d'utilisateur et le nom du dépôt à partir de l'URL GitHub
+    # Extract username and repository name from GitHub URL
     read -r username reponame <<< $(extract_github_repo_info "$repo")
     if [ -z "$username" ] || [ -z "$reponame" ]; then
-        echo "Erreur lors de l'extraction des informations du dépôt : $repo"
+        echo "Error extracting repository information: $repo"
         continue
     fi
-    # Cloner le dépôt
-    echo "Clonage de $repo ..."
+    # Clone the repository
+    echo "Cloning $repo ..."
     git clone "git@github.com:$username/$reponame.git"
     if [ $? -ne 0 ]; then
-        echo "Erreur lors du clonage de $repo."
+        echo "Error cloning $repo."
     fi
 done <<EOL
 git@github.com:EpitechPromo2028/B-CPE-100-NCE-1-1-cpoolday01-christophe.vandevoir.git

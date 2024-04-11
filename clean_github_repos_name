@@ -1,29 +1,29 @@
 #!/bin/bash
 
-# Fonction pour renommer les dossiers
-renommer_dossiers() {
-    chemin=$(pwd)
-    # Parcourir tous les dossiers dans le dossier courant
-    for nom_dossier in $chemin/*; do
-        # Vérifier si c'est un dossier
-        if [ -d "$nom_dossier" ]; then
-            # Extraire le nom du dossier
-            nom_dossier_base=$(basename "$nom_dossier")
-            # Séparer le nom de dossier en utilisant le tiret comme séparateur
-            parties_nom=($(echo $nom_dossier_base | tr '-' '\n'))
-            # Vérifier si le nom de dossier suit l'un des formats attendus
-            if [ ${#parties_nom[@]} -ge 7 ]; then
-                # Extraire la partie nécessaire et la mettre en majuscule
-                partie_a_modifier=${parties_nom[6]^}
-                # Réassembler le nom du dossier avec la partie modifiée
-                nouveau_nom_dossier="${partie_a_modifier}"
-                # Renommer le dossier
-                mv "$nom_dossier" "$chemin/$nouveau_nom_dossier"
-                echo "Dossier renommé: $nom_dossier_base -> $nouveau_nom_dossier"
+# Function to rename folders
+rename_folders() {
+    path=$(pwd)
+    # Traverse all folders in the current directory
+    for folder_name in $path/*; do
+        # Check if it's a directory
+        if [ -d "$folder_name" ]; then
+            # Extract the folder name
+            base_folder_name=$(basename "$folder_name")
+            # Split the folder name using dash as a separator
+            folder_parts=($(echo $base_folder_name | tr '-' '\n'))
+            # Check if the folder name follows one of the expected formats
+            if [ ${#folder_parts[@]} -ge 7 ]; then
+                # Extract the required part and capitalize it
+                part_to_modify=${folder_parts[6]^}
+                # Reassemble the folder name with the modified part
+                new_folder_name="${part_to_modify}"
+                # Rename the folder
+                mv "$folder_name" "$path/$new_folder_name"
+                echo "Folder renamed: $base_folder_name -> $new_folder_name"
             fi
         fi
     done
 }
 
-# Appeler la fonction pour renommer les dossiers
-renommer_dossiers
+# Call the function to rename folders
+rename_folders
