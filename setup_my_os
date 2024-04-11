@@ -1,0 +1,60 @@
+#!/bin/bash
+
+# Clone the repository
+#git clone git@github.com:ItsKarmaOff/my_scripts.git
+
+# Go to the "my_scripts" directory
+cd my_scripts || exit
+
+# Make all scripts in the directory executable
+chmod +x *
+
+# Return to home directory
+cd ~ || exit
+
+# Copy the "install_epitech_dump" script to the root
+#cp ~/my_scripts/install_epitech_dump /
+
+# Go to the root directory
+cd / || exit
+
+# Execute the "install_epitech_dump" script with sudo
+#sudo ./install_epitech_dump
+
+# Remove the "install_epitech_dump" script from the root
+rm install_epitech_dump
+
+# Return to home directory
+cd ~ || exit
+
+# Check if the "Epitech" directory already exists
+if [ -d "Epitech" ]; then
+    # If the directory already exists, move into it
+    cd Epitech || exit
+else
+    # Otherwise, create the "Epitech" directory
+    mkdir Epitech
+    # Move into the newly created directory
+    cd Epitech || exit
+fi
+
+# Copy the "clone_github_repos" script to the "Epitech" directory
+cp ~/my_scripts/clone_github_repos .
+
+# Copy the "clean_github_repos_name" script to the "Epitech" directory
+cp ~/my_scripts/clean_github_repos_name .
+
+# Execute the "clone_github_repos" script
+./clone_github_repos
+
+# Execute the "clean_github_repos_name" script
+./clean_github_repos_name
+
+# Remove the "clone_github_repos" script from the "Epitech" directory
+rm clone_github_repos
+
+# Remove the "clean_github_repos_name" script from the "Epitech" directory
+rm clean_github_repos_name
+
+# Return to home directory
+cd ~ || exit

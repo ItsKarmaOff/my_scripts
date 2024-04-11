@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Fonction pour renommer les dossiers
+renommer_dossiers() {
+    chemin=$(pwd)
+    # Parcourir tous les dossiers dans le dossier courant
+    for nom_dossier in $chemin/*; do
+        # Vérifier si c'est un dossier
+        if [ -d "$nom_dossier" ]; then
+            # Extraire le nom du dossier
+            nom_dossier_base=$(basename "$nom_dossier")
+            # Séparer le nom de dossier en utilisant le tiret comme séparateur
+            parties_nom=($(echo $nom_dossier_base | tr '-' '\n'))
+            # Vérifier si le nom de dossier suit l'un des formats attendus
+            if [ ${#parties_nom[@]} -ge 7 ]; then
+                # Extraire la partie nécessaire et la mettre en majuscule
+                partie_a_modifier=${parties_nom[6]^}
+                # Réassembler le nom du dossier avec la partie modifiée
+                nouveau_nom_dossier="${partie_a_modifier}"
+                # Renommer le dossier
+                mv "$nom_dossier" "$chemin/$nouveau_nom_dossier"
+                echo "Dossier renommé: $nom_dossier_base -> $nouveau_nom_dossier"
+            fi
+        fi
+    done
+}
+
+# Appeler la fonction pour renommer les dossiers
+renommer_dossiers

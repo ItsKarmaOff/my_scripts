@@ -1,0 +1,108 @@
+#!/bin/bash
+
+# Fonction pour extraire le nom d'utilisateur et le nom du dépôt à partir de l'URL GitHub
+extract_github_repo_info() {
+    local url="$1"
+    # Supprimer 'https://github.com/' ou 'git@github.com:' et '.git' à la fin de l'URL
+    local cleaned_url="${url#https://github.com/}"
+    cleaned_url="${cleaned_url#git@github.com:}"
+    cleaned_url="${cleaned_url%.git}"
+    # Extraire le nom d'utilisateur et le nom du dépôt
+    local user_repo=($(echo "$cleaned_url" | tr '/' ' '))
+    echo "${user_repo[0]} ${user_repo[1]}"
+}
+
+# Cloner chaque dépôt GitHub répertorié dans le script
+while IFS= read -r repo || [ -n "$repo" ]; do
+    # Extraire le nom d'utilisateur et le nom du dépôt à partir de l'URL GitHub
+    read -r username reponame <<< $(extract_github_repo_info "$repo")
+    if [ -z "$username" ] || [ -z "$reponame" ]; then
+        echo "Erreur lors de l'extraction des informations du dépôt : $repo"
+        continue
+    fi
+    # Cloner le dépôt
+    echo "Clonage de $repo ..."
+    git clone "git@github.com:$username/$reponame.git"
+    if [ $? -ne 0 ]; then
+        echo "Erreur lors du clonage de $repo."
+    fi
+done <<EOL
+git@github.com:EpitechPromo2028/B-CPE-100-NCE-1-1-cpoolday01-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-CPE-100-NCE-1-1-cpoolday02-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-CPE-100-NCE-1-1-cpoolday03-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-CPE-100-NCE-1-1-cpoolday04-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-CPE-100-NCE-1-1-cpoolday05-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-CPE-100-NCE-1-1-cpoolday06-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-CPE-100-NCE-1-1-cpoolday07-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-CPE-100-NCE-1-1-cpoolday08-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-CPE-100-NCE-1-1-cpoolday09-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-CPE-100-NCE-1-1-cpoolday10-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-CPE-100-NCE-1-1-cpoolday11-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-CPE-100-NCE-1-1-cpoolday12-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-CPE-100-NCE-1-1-cpoolday13-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-CPE-100-NCE-1-1-Cworkshoplib-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-CPE-100-NCE-1-1-rush1-noe.bouly.git
+git@github.com:EpitechPromo2028/B-CPE-100-NCE-1-1-rush2-ridjan.xhika.git
+git@github.com:EpitechPromo2028/B-CPE-100-NCE-1-1-star-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-CPE-100-NCE-1-1-countisland-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-CPE-101-NCE-1-1-bsminiprintf-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-CPE-101-NCE-1-1-miniprintf-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-CPE-101-NCE-1-1-myprintf-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-CPE-101-NCE-1-1-finalstumper-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-CPE-110-NCE-1-1-bssettingup-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-CPE-110-NCE-1-1-bsorganized-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-CPE-110-NCE-1-1-bssecured-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-CPE-110-NCE-1-1-settingup-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-CPE-110-NCE-1-1-organized-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-CPE-110-NCE-1-1-secured-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-PSU-100-NCE-1-1-bsmyls-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-PSU-100-NCE-1-1-bssokoban-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-PSU-100-NCE-1-1-bsnavy-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-PSU-100-NCE-1-1-myls-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-PSU-100-NCE-1-1-sokoban-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-PSU-100-NCE-1-1-navy-ridjan.xhika.git
+git@github.com:EpitechPromo2028/B-MAT-100-NCE-1-1-101pong-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-MAT-100-NCE-1-1-102architect-ridjan.xhika.git
+git@github.com:EpitechPromo2028/B-MAT-100-NCE-1-1-103cipher-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-MAT-100-NCE-1-1-104neutrinos-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-MAT-100-NCE-1-1-105demography-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-MUL-100-NCE-1-1-myhunter-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-MUL-100-NCE-1-1-myradar-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-PRO-100-NCE-1-1-proemail-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-PRO-100-NCE-1-1-arguedmail-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-ENG-100-NCE-1-1-futurecampus-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-CPE-210-NCE-2-1-solostumper01-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-CPE-210-NCE-2-1-solostumper02-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-CPE-210-NCE-2-1-solostumper03-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-PSU-200-NCE-2-1-bsminishell1-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-PSU-200-NCE-2-1-bsminishell2-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-PSU-200-NCE-2-1-bs42sh-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-PSU-200-NCE-2-1-minishell1-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-PSU-200-NCE-2-1-minishell2-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-PSU-200-NCE-2-1-42sh-gianni.tuero.git
+git@github.com:EpitechPromo2028/B-CPE-200-NCE-2-1-bsrobotfactory-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-CPE-200-NCE-2-1-bsamazed-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-CPE-200-NCE-2-1-bscorewar-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-CPE-200-NCE-2-1-robotfactory-nicolas.toro.git
+git@github.com:EpitechPromo2028/B-CPE-200-NCE-2-1-amazed-nicolas.toro.git
+git@github.com:EpitechPromo2028/B-SEC-200-NCE-2-1-bsburp-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-SEC-200-NCE-2-1-burp-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-DOP-200-NCE-2-1-bspopeye-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-DOP-200-NCE-2-1-bschocolatine-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-DOP-200-NCE-2-1-popeye-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-DOP-200-NCE-2-1-chocolatine-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-AIA-200-NCE-2-1-bsn4s-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-AIA-200-NCE-2-1-n4s-killian.pluenet.git
+git@github.com:EpitechPromo2028/B-MUL-200-NCE-2-1-mypaint-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-MAT-200-NCE-2-1-106bombyx-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-MAT-200-NCE-2-1-107transfer-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-MAT-200-NCE-2-1-108trigo-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-MAT-200-NCE-2-1-109titration-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-PRO-200-NCE-2-1-3emails-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-PRO-200-NCE-2-1-userguide-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-PRO-200-NCE-2-1-memo-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-CPE-210-NCE-2-1-stumper1-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-CPE-210-NCE-2-1-stumper2-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-CPE-210-NCE-2-1-stumper3-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-CPE-210-NCE-2-1-stumper4-christophe.vandevoir.git
+EOL
