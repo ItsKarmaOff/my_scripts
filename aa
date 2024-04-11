@@ -1,0 +1,66 @@
+#!/bin/bash
+
+# Vérifie s'il y a suffisamment d'arguments
+if [ $# -lt 1 ]; then
+    echo "Usage: $0 <nom_projet>"
+    exit 1
+fi
+
+# Récupère le nom du projet depuis le premier paramètre
+nom_projet=$1
+
+# Vérifie si le dossier du projet existe déjà
+if [ -d "$nom_projet" ]; then
+    echo "Erreur : Le dossier du projet $nom_projet existe déjà. Choisissez un autre nom."
+    exit 1
+fi
+
+# Crée la structure de base du projet
+mkdir "$nom_projet"
+cd "$nom_projet" || exit
+
+# Crée les dossiers nécessaires
+mkdir include src tests
+touch src/main.c
+touch include/$nom_projet.h
+touch Makefile
+
+# Initialise le fichier Makefile avec un contenu de base
+cat <<EOL > Makefile
+## Makefile for $nom_projet in /path/to/your/project
+##
+## Made by Your Name
+## Login   <your_login@epitech.eu>
+##
+## Started on  Mon Jan 1 00:00:00 2023 Your Name
+## Last update Mon Jan 1 00:00:00 2023 Your Name
+
+CC	= gcc
+CFLAGS	= -Wall -Wextra -Iinclude
+
+SRC	= \$(wildcard src/*.c)
+OBJ	= \$(SRC:.c=.o)
+
+NAME	= $nom_projet
+
+all: \$(NAME)
+
+\$(NAME): \$(OBJ)
+	\$(CC) \$(OBJ) -o \$(NAME)
+
+clean:
+	rm -f \$(OBJ)
+
+fclean: clean
+	rm -f \$(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re
+EOL
+
+# Affiche un message de succès
+echo "Projet $nom_projet créé avec succès."
+
+exit 0
+

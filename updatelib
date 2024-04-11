@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Check if there are enough arguments
+if [ $# -lt 1 ]; then
+    echo "Usage: $0 <destination_folder_path>"
+    exit 1
+fi
+
+# Retrieve the destination folder path from the first parameter
+destination_folder="/home/christophe/Epitech/$1"
+
+# Check if the destination folder exists
+if [ ! -d "$destination_folder" ]; then
+    echo "Error: The destination folder does not exist. Please specify a valid path."
+    exit 1
+fi
+
+# Reference folder containing the files to copy/update
+reference_folder="/home/christophe/Epitech/Template"
+
+# Check if the reference folder exists
+if [ ! -d "$reference_folder" ]; then
+    echo "Error: The reference folder does not exist. Please specify a valid path."
+    exit 1
+fi
+
+# Copy or update files from the "lib" folder
+rsync -av --delete "$reference_folder/lib/" "/$destination_folder/lib/"
+
+echo "The 'lib' folder in $destination_folder has been successfully updated from the reference folder."
+
+exit 0
+
