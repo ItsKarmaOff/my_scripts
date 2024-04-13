@@ -5,7 +5,18 @@
 ## Makefile
 ##
 
-SRC		=		my_putchar.c				\
+# Directories
+OBJDIR		=	../../obj
+INCDIR		=	../../include
+LIBDIR		=	../../lib
+
+# Commands for creating directories
+MKDIR_P		=	mkdir -p
+
+# Command for removing files
+RM			=	rm -rf
+
+SRC			=	my_putchar.c				\
 				concat_params.c				\
 				my_arraylen.c				\
 				my_char_is_alpha.c			\
@@ -49,7 +60,7 @@ SRC		=		my_putchar.c				\
 				my_strcat.c					\
 				my_strncat.c
 
-OBJ			=	$(SRC:.c=.o)
+OBJ			=	$(addprefix $(OBJDIR)/,$(SRC:.c=.o))
 
 CFLAGS		=	-Wall
 
@@ -57,20 +68,28 @@ INCLUDE		=	my.h
 
 NAME		=	libmy.a
 
-ALL:			libmy copy
+all: libmy copy
 
-libmy:			$(OBJ)
-				@ar rc $(NAME) $(OBJ)
+directory:
+		@$(MKDIR_P) $(OBJDIR)
 
-copy:
-				@cp $(INCLUDE) ../../include/$(INCLUDE)
-				@cp $(NAME) ../$(NAME)
+$(OBJDIR)/%.o: %.c | directory
+		@$(CC) $(CFLAGS) -c $< -o $@
+
+libmy: $(OBJ)
+		@ar rc $(NAME) $(OBJ)
+
+copy: libmy
+		@cp $(INCLUDE) $(INCDIR)/$(INCLUDE)
+		@cp $(NAME) $(LIBDIR)/$(NAME)
 
 clean:
-				@rm -rf $(OBJ)
+		@$(RM) $(OBJ)
 
-fclean:			clean
-				@rm -rf $(NAME)
-				@rm -rf ../$(NAME)
+fclean: clean
+		@$(RM) $(LIBDIR)/$(NAME)
+		@$(RM) $(LIBDIR)/my/$(NAME)
 
-re:				fclean ALL
+re: fclean all
+
+.PHONY: all directory libmy copy clean fclean re
