@@ -11,7 +11,7 @@ int my_arraylen(char **array)
     int len;
 
     if (array == NULL)
-        return 0;
+        return -1;
     for (len = 0; array[len] != NULL; len++);
     return len;
 }

@@ -11,7 +11,7 @@ int my_strlen(char const *str)
     int len;
 
     if (str == NULL)
-        return 0;
+        return -1;
     for (len = 0; str[len] != '\0'; len++);
     return len;
 }

@@ -35,10 +35,10 @@ CRITERIONFLAGS	=	--coverage -lcriterion
 # Directories
 SRCDIR		=	src
 INCDIR		=	include
-OBJDIR		=	obj
 LIBDIR		=	lib
 LIBMYDIR	=	$(LIBDIR)/my
 LIBMYPRINTFDIR	=	$(LIBDIR)/myprintf
+LIBMYHASHTABLEDIR	=	$(LIBDIR)/myhashtable
 
 # Libraries
 LIBS		=	-L$(LIBDIR) -lmy -lmyprintf
@@ -47,25 +47,18 @@ LIBS		=	-L$(LIBDIR) -lmy -lmyprintf
 SRC		=	$(SRCDIR)/main.c
 
 # Objects
-OBJ		=	$(SRC:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
+OBJ		=	$(SRC:%.c=%.o)
 
 # Includes
 INC		=	-I$(INCDIR)
 
-# Commands for creating directories
-MKDIR_P		=	mkdir -p
-
 # Command for removing files
 RM		=	rm -rf
 
-all:	directory libmy libmyprintf project
-
-# Create the object directory
-directory:
-		@$(MKDIR_P) $(OBJDIR)
+all:	libmy libmyprintf libmyhashtable project
 
 # Build the object files from the sources
-$(OBJDIR)/%.o:	$(SRCDIR)/%.c
+%.o:	%.c
 		@$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 # Build and compile the project
@@ -113,6 +106,10 @@ libmyprintf:
 		@echo -e "\033[0;33mBuilding libmyprintf...\033[0m"
 		@$(MAKE) --no-print-directory -s -C $(LIBMYPRINTFDIR)
 
+libmyhashtable:
+		@echo -e "\033[0;33mBuilding libmyhashtable...\033[0m"
+		@$(MAKE) --no-print-directory -s -C $(LIBMYHASHTABLEDIR)
+
 # Execute and display the coding style checker
 codingstyle:
 		@$(MAKE) fclean --no-print-directory -s
@@ -134,15 +131,17 @@ clean:
 		@echo -e "\033[0;31mCleaning object files...\033[0m"
 		@$(MAKE) clean --no-print-directory -C $(LIBMYDIR)
 		@$(MAKE) clean --no-print-directory -C $(LIBMYPRINTFDIR)
+		@$(MAKE) clean --no-print-directory -C $(LIBMYHASHTABLEDIR)
 		@echo -e "\033[0;31mCleaning tests...\033[0m"
 		@$(MAKE) clean --no-print-directory -C ./tests/
-		@$(RM) $(OBJDIR)
+		@$(RM) $(OBJ)
 
 # Clean object files and the binary from the project and the libraries
 fclean:		clean
 		@echo -e "\033[0;31mCleaning libs...\033[0m"
 		@$(MAKE) fclean --no-print-directory -C $(LIBMYDIR)
 		@$(MAKE) fclean --no-print-directory -C $(LIBMYPRINTFDIR)
+		@$(MAKE) fclean --no-print-directory -C $(LIBMYHASHTABLEDIR)
 		@echo -e "\033[0;31mCleaning unit_tests...\033[0m"
 		@$(MAKE) fclean --no-print-directory -C ./tests/
 		@echo -e "\033[0;31mCleaning $(NAME)...\033[0m"

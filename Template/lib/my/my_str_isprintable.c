@@ -10,12 +10,13 @@ int my_str_isprintable(char const *str)
 {
     int result = 1;
 
+    if (str == NULL)
+        return -1;
     for (int i = 0; str[i] != '\0'; i++) {
-        if (str[i] >= 32 && str[i] <= 126) {
+        if (str[i] >= 32 && str[i] <= 126)
             result = 1;
-        } else {
-            return (0);
-        }
+        else
+            return 0;
     }
-    return (result);
+    return result;
 }

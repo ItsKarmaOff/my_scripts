@@ -16,16 +16,16 @@ cd ~ || exit
 #cp ~/my_scripts/install_epitech_dump /
 
 # Go to the root directory
-cd / || exit
+#cd / || exit
 
 # Execute the "install_epitech_dump" script with sudo
 #sudo ./install_epitech_dump
 
 # Remove the "install_epitech_dump" script from the root
-rm install_epitech_dump
+#rm install_epitech_dump
 
 # Return to home directory
-cd ~ || exit
+#cd ~ || exit
 
 # Check if the "Epitech" directory already exists
 if [ -d "Epitech" ]; then

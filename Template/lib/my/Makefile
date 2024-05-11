@@ -6,12 +6,8 @@
 ##
 
 # Directories
-OBJDIR		=	../../obj
 INCDIR		=	../../include
 LIBDIR		=	../../lib
-
-# Commands for creating directories
-MKDIR_P		=	mkdir -p
 
 # Command for removing files
 RM			=	rm -rf
@@ -60,21 +56,15 @@ SRC			=	my_putchar.c				\
 				my_strcat.c					\
 				my_strncat.c
 
-OBJ			=	$(addprefix $(OBJDIR)/,$(SRC:.c=.o))
+OBJ			=	$(SRC:%.c=%.o)
 
-CFLAGS		=	-Wall
+CFLAGS		=	-Wall -Wextra -Werror
 
 INCLUDE		=	my.h
 
 NAME		=	libmy.a
 
 all: libmy copy
-
-directory:
-		@$(MKDIR_P) $(OBJDIR)
-
-$(OBJDIR)/%.o: %.c | directory
-		@$(CC) $(CFLAGS) -c $< -o $@
 
 libmy: $(OBJ)
 		@ar rc $(NAME) $(OBJ)

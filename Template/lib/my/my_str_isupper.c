@@ -10,12 +10,14 @@ int my_str_isupper(char const *str)
 {
     int result = 1;
 
+    if (str == NULL)
+        return -1;
     for (int i = 0; str[i] != '\0'; i++) {
-        if (str[i] >= 'A' && str[i] <= 'Z') {
+        if (str[i] >= 'A' && str[i] <= 'Z')
             result = 1;
-        } else {
-            return (0);
-        }
+        else
+            return 0;
+
     }
     return (result);
 }

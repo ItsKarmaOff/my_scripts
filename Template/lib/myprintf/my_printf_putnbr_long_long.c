@@ -10,7 +10,7 @@ static char conv_base_long_long(unsigned long long hex, char const *base)
 {
     int i = 0;
 
-    while (base[i] != '\0' && i != hex) {
+    while (base[i] != '\0' && (unsigned long long)i != hex) {
         i++;
     }
     return base[i];
