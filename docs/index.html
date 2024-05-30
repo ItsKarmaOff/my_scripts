@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/bootstrap.css">
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/scss/_variables.scss">
+        <link rel="stylesheet" href="/scss/_bootswatch.scss">
+        <link rel="icon" href="/data/img/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/data/img/favicon.ico" type="image/x-icon">
+        <title>my_scripts | Christophe Vandevoir</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+            <div class="container-fluid">
+                <a class="navbar-brand">ItsKarmaOff</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarColor01">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Home
+                                <span class="visually-hidden">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/about">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/language-and-tools">Languages and Tools</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Projects</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="/42sh">42sh</a>
+                                <a class="dropdown-item" href="/Corewar">Corewar</a>
+                                <a class="dropdown-item" href="/Epitech-CPool2023">Epitech-CPool2023</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item active" href="/my_scripts">my_scripts</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/contact">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container" align="left">
+            <h1 align="center">Bash Scripts and Templates for "my" and "myprintf" Libraries</h1>
+            <p align="center">This repository contains a set of Bash scripts as well as templates for the "my" and "myprintf" libraries, aimed at simplifying the development and usage process of these tools.</p>
+            <h2>Repository Contents</h2>
+            <h3>Bash Scripts:</h3>
+            <ul>
+                <li><code>cat_private_ssh_key [KEY_NAME]</code>: Displays the private key given as a parameter in the terminal.</li>
+                <li><code>cat_public_ssh_key [KEY_NAME]</code>: Displays the public key given as a parameter in the terminal.</li>
+                <li><code>clean_github_repos_name</code>: Automatically renames all your Epitech GitHub repositories to <code>Project Name</code> in the script execution directory.</li>
+                <li><code>clone_github_repos</code>: Clones all your GitHub repositories listed in the script into the script execution directory.</li>
+                <li><code>count_files.sh</code>: Counts the number of files present in the script execution directory.</li>
+                <li><code>display_codingstyle.sh</code>: Displays the Epitech coding-style error report with better readability.</li>
+                <li><code>find_sh.sh</code>: Description of script 6.</li>
+                <li><code>gen_ssh_key [EMAIL] [KEY_NAME]</code>: Generates an SSH key in <code>home/.ssh/key_name</code>.</li>
+                <li><code>gotta_catch_them_all.sh</code>: Description of script 8.</li>
+                <li><code>how_many_are_we.sh</code>: Description of script 9.</li>
+                <li><code>install_epitech_dump.sh</code>: Installs all prerequisites for Epitech.</li>
+                <li><code>looneytised.sh</code>: Description of script 11.</li>
+                <li><code>mkproject.sh [PROJECT_NAME] [BINARY_NAME]</code>: Creates a folder with everything needed to start an Epitech project.</li>
+                <li><code>mr_clean</code>: Deletes all temporary files and folders.</li>
+                <li><code>push_that.sh [MESSAGE]</code>: Pushes all files to the current repository with a given message as a parameter.</li>
+                <li><code>r_tacpy.sh</code>: Description of script 15.</li>
+                <li><code>setup_my_os</code>: Uses other scripts to configure your Linux after a reinstallation or initial installation.</li>
+                <li><code>skip.sh</code>: Description of script 17.</li>
+                <li><code>updatelib [PROJECT]</code>: Updates the library of a project.</li>
+            </ul>
+            <h3>"my" Library:</h3>
+            <ul>
+                <li><code>concat_params.c</code>: Concatenates all the arguments passed.</li>
+                <li><code>my_arraylen.c</code>: Gets the length of a two-dimensional array.</li>
+                <li><code>my_char_is_alpha.c</code>: Checks if a character is an alphabetical character.</li>
+                <li><code>my_char_is_num.c</code>: Checks if a character is a numerical character.</li>
+                <li><code>my_compute_power_it.c</code>: Calculates the power of a number iteratively.</li>
+                <li><code>my_compute_power_rec.c</code>: Calculates the power of a number recursively.</li>
+                <li><code>my_compute_square_root.c</code>: Calculates the square root of a number.</li>
+                <li><code>my_find_prime_sup.c</code>: Finds the smallest prime number greater than or equal to nb.</li>
+                <li><code>my_free_array.c</code>: Frees a two-dimensional array.</li>
+                <li><code>my_getnbr.c</code>: Converts a string to an integer.</li>
+                <li><code>my_is_prime.c</code>: Checks if a number is prime.</li>
+                <li><code>my_isneg.c</code>: Checks if a number is negative.</li>
+                <li><code>my_memset.c</code>: Sets the first n bytes of the memory area pointed to by s to the specified value c.</li>
+                <li><code>my_put_nbr.c</code>: Prints an integer.</li>
+                <li><code>my_putchar.c</code>: Prints a character.</li>
+                <li><code>my_putstr.c</code>: Prints a string.</li>
+                <li><code>my_revstr.c</code>: Reverses a string.</li>
+                <li><code>my_show_word_array.c</code>: Displays the given word array.</li>
+                <li><code>my_showmem.c</code>: Displays a memory area.</li>
+                <li><code>my_showstr.c</code>: Displays a string.</li>
+                <li><code>my_sort_int_array.c</code>: Sorts an array of integers in ascending order.</li>
+                <li><code>my_sort_str.c</code>: Sorts a string alphabetically.</li>
+                <li><code>my_str_isalpha.c</code>: Checks if a string contains only alphabetical characters.</li>
+                <li><code>my_str_islower.c</code>: Checks if a string contains only lowercase characters.</li>
+                <li><code>my_str_isnum.c</code>: Checks if a string contains only numerical characters.</li>
+                <li><code>my_str_isprintable.c</code>: Checks if a string contains only printable characters.</li>
+                <li><code>my_str_isupper.c</code>: Checks if a string contains only uppercase characters.</li>
+                <li><code>my_str_to_word_array.c</code>: Splits a string into words based on a set of separators.</li>
+                <li><code>my_strcapitalize.c</code>: Capitalizes all words in a string.</li>
+                <li><code>my_strcat.c</code>: Concatenates two strings.</li>
+                <li><code>my_strcmp.c</code>: Compares two strings.</li>
+                <li><code>my_strcmp2.c</code>: Compares two strings ignoring case and order.</li>
+                <li><code>my_strcpy.c</code>: Copies a string.</li>
+                <li><code>my_strdup.c</code>: Duplicates a string.</li>
+                <li><code>my_strlen.c</code>: Gets the length of a string.</li>
+                <li><code>my_strlowcase.c</code>: Converts a string to lowercase.</li>
+                <li><code>my_strncat.c</code>: Concatenates n characters from src to dest.</li>
+                <li><code>my_strncmp.c</code>: Compares two strings up to n characters.</li>
+                <li><code>my_strncpy.c</code>: Copies n characters from src to dest.</li>
+                <li><code>my_strndup.c</code>: Duplicates a string up to n characters.</li>
+                <li><code>my_strstr.c</code>: Finds the first occurrence of a substring in a string.</li>
+                <li><code>my_strupcase.c</code>: Converts a string to uppercase.</li>
+                <li><code>my_swap.c</code>: Swaps two integers.</li>
+            </ul>
+            <h3>"myprintf" Library:</h3>
+            <ul>
+                <li><code>my_printf.c</code>: Description of file 1.</li>
+                <li><code>my_printf_put_nbr.c</code>: Description of file 2.</li>
+                <li><code>my_printf_putchar.c</code>: Description of file 3.</li>
+                <li><code>my_printf_putnbr_base_unsigned.c</code>: Description of file 4.</li>
+                <li><code>my_printf_putnbr_double.c</code>: Description of file 5.</li>
+                <li><code>my_printf_putnbr_long_long.c</code>: Description of file 6.</li>
+                <li><code>my_printf_putnbr_sct.c</code>: Description of file 7.</li>
+                <li><code>my_printf_putstr.c</code>: Description of file 8.</li>
+                <li><code>my_printf_revstr.c</code>: Description of file 9.</li>
+                <li><code>my_printf_strlen.c</code>: Description of file 10.</li>
+                <li><code>my_specifier_c.c</code>: Description of file 11.</li>
+                <li><code>my_specifier_capital_e.c</code>: Description of file 12.</li>
+                <li><code>my_specifier_capital_e_g.c</code>: Description of file 13.</li>
+                <li><code>my_specifier_capital_f.c</code>: Description of file 14.</li>
+                <li><code>my_specifier_capital_f_g.c</code>: Description of file 15.</li>
+                <li><code>my_specifier_capital_g.c</code>: Description of file 16.</li>
+                <li><code>my_specifier_capital_x.c</code>: Description of file 17.</li>
+                <li><code>my_specifier_d.c</code>: Description of file 18.</li>
+                <li><code>my_specifier_e.c</code>: Description of file 19.</li>
+                <li><code>my_specifier_e_g.c</code>: Description of file 20.</li>
+                <li><code>my_specifier_f.c</code>: Description of file 21.</li>
+                <li><code>my_specifier_f_g.c</code>: Description of file 22.</li>
+                <li><code>my_specifier_g.c</code>: Description of file 23.</li>
+                <li><code>my_specifier_i.c</code>: Description of file 24.</li>
+                <li><code>my_specifier_n.c</code>: Description of file 25.</li>
+                <li><code>my_specifier_o.c</code>: Description of file 26.</li>
+                <li><code>my_specifier_p.c</code>: Description of file 27.</li>
+                <li><code>my_specifier_perc.c</code>: Description of file 28.</li>
+                <li><code>my_specifier_s.c</code>: Description of file 29.</li>
+                <li><code>my_specifier_u.c</code>: Description of file 30.</li>
+                <li><code>my_specifier_x.c</code>: Description of file 31.</li>
+            </ul>
+            <h2>Usage</h2>
+            <h3>Bash Scripts</h3>
+            <p>To use the Bash scripts, follow these steps:</p>
+            <ol>
+                <li>Clone this repository to your local machine.</li>
+                <li>Execute the desired script using the command <code>./script_name.sh</code>.</li>
+            </ol>
+            <hr>
+            <p>Created by <a href="https://github.com/ItsKarmaOff">Christophe VANDEVOIR</a></p>
+        </div>
+        <script src="/scripts/custom.js"></script>
+        <script src="/scripts/bootstrap.bundle.min.js"></script>
+    </body>
+</html>
