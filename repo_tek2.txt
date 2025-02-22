@@ -20,4 +20,5 @@ git@github.com:EpitechPromo2028/B-PDG-300-NCE-3-1-PDGRUSH3-nicolas.toro.git
 git@github.com:EpitechPromo2028/B-ASM-400-NCE-4-1-bsasmminilibc-christophe.vandevoir.git
 git@github.com:EpitechPromo2028/B-ASM-400-NCE-4-1-asmminilibc-christophe.vandevoir.git
 git@github.com:EpitechPromo2028/B-OOP-400-NCE-4-1-tekspice-christophe.vandevoir.git
-git@github.com:EpitechPromo2028/B-FUN-400-NCE-4-1-bswolfram-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-FUN-400-NCE-4-1-wolfram-christophe.vandevoir.git
+git@github.com:EpitechPromo2028/B-NWP-400-NCE-4-1-myftp-christophe.vandevoir.git
